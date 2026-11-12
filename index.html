@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Account Lookup</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>On Call Account Lookup & Customer Forms</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#fff;color:#111827}
@@ -31,18 +34,19 @@ input:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}
 </head>
 <body>
 <div class="wrap">
-  <div class="searchbox">
+  <div class="forms" style="margin-top:0;border:2px solid #2563eb;background:#eff6ff">
+    <div class="forms-title" style="font-size:22px">CUSTOMER FORMS</div>
+    <div class="forms-links">
+      <a class="form-link" href="forms/Credit-Card-Authorization-Form.pdf?v=20261112" download>CREDIT CARD AUTHORIZATION FORM</a>
+      <a class="form-link" href="forms/Repair-Authorization-Form.pdf?v=20261112" download>REPAIR AUTHORIZATION FORM</a>
+    </div>
+  </div>
+  <div class="searchbox" style="margin-top:16px">
     <input id="q" type="search" inputmode="search" autocomplete="off" autocapitalize="characters" placeholder="Search company name…">
     <button id="clear" class="clear" aria-label="Clear search">×</button>
   </div>
   <div class="hint">Type any part of the name — for example: RYDER, PENSKE, UPS, WALMART.</div>
-  <div class="forms">
-    <div class="forms-title">Customer Forms</div>
-    <div class="forms-links">
-      <a class="form-link" href="forms/Credit-Card-Authorization-Form.pdf" download>Credit Card Authorization Form</a>
-      <a class="form-link" href="forms/Repair-Authorization-Form.pdf" download>Repair Authorization Form</a>
-    </div>
-  </div>
+
   <div id="status" class="status"></div>
   <div id="results" class="results"></div>
 </div>
@@ -57,5 +61,6 @@ function rank(name,query){const n=norm(name),c=compact(name),nq=norm(query),cq=c
 function render(){const query=q.value.trim();clear.style.display=query?'block':'none';if(!query){status.className='status';status.textContent='';results.style.display='none';results.innerHTML='';return}const found=companies.map(name=>({name,score:rank(name,query)})).filter(x=>x.score<999).sort((a,b)=>a.score-b.score||a.name.localeCompare(b.name));const exact=found.filter(x=>x.score===0);if(found.length){status.className='status ok';status.textContent=exact.length?'✓ EXACT ACCOUNT MATCH':`✓ ${found.length} MATCH${found.length===1?'':'ES'} FOUND`;const show=found.slice(0,20);results.innerHTML=show.map(x=>`<div class="row ${x.score===0?'exact':''}">${x.name.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`).join('')+(found.length>20?`<div class="more">Showing first 20 of ${found.length} matches. Type more letters to narrow the list.</div>`:'');results.style.display='block'}else{status.className='status none';status.textContent='NO MATCH FOUND IN ACCOUNT LIST — try fewer letters or check the spelling.';results.style.display='none';results.innerHTML=''}}
 q.addEventListener('input',render);clear.addEventListener('click',()=>{q.value='';render();q.focus()});
 </script>
+<!-- site-refresh-2026-11-12 -->
 </body>
 </html>
