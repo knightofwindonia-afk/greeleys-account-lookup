@@ -21,7 +21,12 @@ input:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}
 .row:last-child{border-bottom:0}
 .exact{background:#f0fdf4}
 .more{padding:11px 16px;background:#f8fafc;color:#64748b;font-size:14px}
-@media(max-width:520px){.wrap{padding:8px} input{font-size:22px;padding:18px 54px 18px 18px;border-radius:16px} .row{font-size:18px;padding:14px}}
+.forms{margin-top:18px;padding:16px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc}
+.forms-title{font-size:18px;font-weight:800;margin-bottom:10px}
+.forms-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-link{display:block;text-align:center;text-decoration:none;font-weight:750;padding:14px 12px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;color:#111827}
+.form-link:active{background:#f1f5f9}
+@media(max-width:520px){.wrap{padding:8px} input{font-size:22px;padding:18px 54px 18px 18px;border-radius:16px} .row{font-size:18px;padding:14px} .forms-links{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -31,6 +36,13 @@ input:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.12)}
     <button id="clear" class="clear" aria-label="Clear search">×</button>
   </div>
   <div class="hint">Type any part of the name — for example: RYDER, PENSKE, UPS, WALMART.</div>
+  <div class="forms">
+    <div class="forms-title">Customer Forms</div>
+    <div class="forms-links">
+      <a class="form-link" href="forms/Credit-Card-Authorization-Form.pdf" download>Credit Card Authorization Form</a>
+      <a class="form-link" href="forms/Repair-Authorization-Form.pdf" download>Repair Authorization Form</a>
+    </div>
+  </div>
   <div id="status" class="status"></div>
   <div id="results" class="results"></div>
 </div>
